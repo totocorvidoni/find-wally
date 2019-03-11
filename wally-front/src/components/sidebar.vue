@@ -2,23 +2,23 @@
   <div id="sidebar">
     <ul>
       <li class="find-status">
-        <img class="portrait" src="@/assets/portraits/wally.png" alt>
+        <img class="portrait status-icon" src="@/assets/portraits/wally.png" alt>
         <p>Wally</p>
       </li>
       <li class="find-status">
-        <img class="portrait" src="@/assets/portraits/wenda.png" alt>
+        <img class="portrait status-icon" src="@/assets/portraits/wenda.png" alt>
         <p>Wenda</p>
       </li>
       <li class="find-status">
-        <img class="portrait" src="@/assets/portraits/woof.png" alt>
+        <img class="portrait status-icon" src="@/assets/portraits/woof.png" alt>
         <p>Woof</p>
       </li>
       <li class="find-status">
-        <img class="portrait" src="@/assets/portraits/whitebeard.png" alt>
+        <img class="portrait status-icon" src="@/assets/portraits/wbeard.png" alt>
         <p>Whitebeard</p>
       </li>
       <li class="find-status">
-        <img class="portrait" src="@/assets/portraits/odlaw.png" alt>
+        <img class="portrait status-icon" src="@/assets/portraits/odlaw.png" alt>
         <p>Odlaw</p>
       </li>
     </ul>
@@ -63,13 +63,16 @@ export default {};
 }
 
 .portrait {
-  border: 5px solid #8b0a24;
   border-radius: 50%;
   box-shadow: 0px 0px 10px #00000080;
+}
+
+.status-icon {
+  border: 5px solid #8b0a24;
   width: 60px;
 }
 
-.portrait:hover {
+.status-icon:hover {
   border: 5px solid #0a8b4f;
 }
 

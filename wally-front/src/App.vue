@@ -25,13 +25,8 @@ export default {
   padding: 0;
 }
 
-body {
-}
-
 #app {
   display: flex;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 </style>
