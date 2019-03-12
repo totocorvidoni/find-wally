@@ -1,7 +1,12 @@
 <template>
   <div v-dragscroll id="play-area">
     <transition name="fade">
-      <character-picker v-if="guessing" :style="{ left: mouseX, top: mouseY }" @closePicker="guessing = false"></character-picker>
+      <character-picker
+        v-if="guessing"
+        :style="{ left: mouseX, top: mouseY }"
+        @close-picker="guessing = false"
+        @results="onResults(...arguments)"
+      ></character-picker>
     </transition>
     <img id="photo" @click="selectArea" src="@/assets/play-photo-troy.jpg">
   </div>
@@ -37,6 +42,9 @@ export default {
       this.guessing = true; // !this.guessing;
       this.mouseX = position.x - 25 + "px"; // 25px offset to center the box on cursor pointer.
       this.mouseY = position.y - 25 + "px";
+    },
+    onResults(args) {
+      this.$emit('check-results', args)
     }
   }
 };

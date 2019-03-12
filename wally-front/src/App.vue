@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <play-area></play-area>
-    <sidebar></sidebar>
+    <play-area @check-results="onCheckResult(...arguments)"></play-area>
+    <sidebar :found="found"></sidebar>
   </div>
 </template>
 
@@ -14,6 +14,22 @@ export default {
   components: {
     playArea,
     sidebar
+  },
+  data() {
+    return {
+      found: {
+        wally: false,
+        wenda: false,
+        woof: false,
+        wbeard: false,
+        odlaw: false
+      }
+    };
+  },
+  methods: {
+    onCheckResult(results) {
+      this.found[results.character] = results.status;
+    }
   }
 };
 </script>

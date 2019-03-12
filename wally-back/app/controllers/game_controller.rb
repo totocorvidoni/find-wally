@@ -4,6 +4,22 @@ class GameController < ApplicationController
   end
 
   def wally
-    render :json => 'I am Wally and this is a test'
+    render :json => 'true'
+  end
+
+  def wenda
+    render :json => 'false'
+  end
+
+  def woof
+    render :json => 'true'
+  end
+
+  def wbeard
+    render :json => 'false'
+  end
+
+  def odlaw
+    render :json => 'true'
   end
 end

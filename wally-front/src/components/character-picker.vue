@@ -1,16 +1,36 @@
 <template>
   <div id="character-picker">
-    <button id="close-picker" class="selection-icon" @click="$emit('closePicker')">X</button>
+    <button id="picker-closer" class="selection-icon" @click="$emit('close-picker')">X</button>
     <img
       id="wally"
       class="portrait selection-icon"
       src="@/assets/portraits/wally.png"
-      @click="onClick"
+      @click="checkArea"
     >
-    <img id="wenda" class="portrait selection-icon" src="@/assets/portraits/wenda.png">
-    <img id="woof" class="portrait selection-icon" src="@/assets/portraits/woof.png">
-    <img id="wbeard" class="portrait selection-icon" src="@/assets/portraits/wbeard.png">
-    <img id="odlaw" class="portrait selection-icon" src="@/assets/portraits/odlaw.png">
+    <img
+      id="wenda"
+      class="portrait selection-icon"
+      src="@/assets/portraits/wenda.png"
+      @click="checkArea"
+    >
+    <img
+      id="woof"
+      class="portrait selection-icon"
+      src="@/assets/portraits/woof.png"
+      @click="checkArea"
+    >
+    <img
+      id="wbeard"
+      class="portrait selection-icon"
+      src="@/assets/portraits/wbeard.png"
+      @click="checkArea"
+    >
+    <img
+      id="odlaw"
+      class="portrait selection-icon"
+      src="@/assets/portraits/odlaw.png"
+      @click="checkArea"
+    >
   </div>
 </template>
 
@@ -18,13 +38,19 @@
 export default {
   name: "characterPicker",
   methods: {
-    async onClick() {
+    async checkArea(e) {
       try {
         const response = await this.axios.get(
-          "http://localhost:3000/game/wally"
+          `http://localhost:3000/game/${e.target.id}`
         );
-        console.log(response.data);
-      } catch (error) {}
+        const status = JSON.parse(response.data);
+        this.$emit("results", { character: e.target.id, status });
+      } catch (error) {
+        alert(
+          "Something terrible and unexpected has happend. Please try again."
+        );
+        console.log(error);
+      }
     }
   }
 };
@@ -40,7 +66,7 @@ export default {
   transition: all 250ms cubic-bezier(0.2, 0.24, 0, 1.3);
 }
 
-#close-picker {
+#picker-closer {
   top: -15px;
   right: -15px;
   background: #b10f0f;

@@ -2,23 +2,43 @@
   <div id="sidebar">
     <ul>
       <li class="find-status">
-        <img class="portrait status-icon" src="@/assets/portraits/wally.png" alt>
+        <img
+          class="portrait status-icon"
+          :class="{'found': found.wally, 'not-found': !found.wally }"
+          src="@/assets/portraits/wally.png"
+        >
         <p>Wally</p>
       </li>
       <li class="find-status">
-        <img class="portrait status-icon" src="@/assets/portraits/wenda.png" alt>
+        <img
+          class="portrait status-icon"
+          :class="{'found': found.wenda, 'not-found': !found.wenda }"
+          src="@/assets/portraits/wenda.png"
+        >
         <p>Wenda</p>
       </li>
       <li class="find-status">
-        <img class="portrait status-icon" src="@/assets/portraits/woof.png" alt>
+        <img
+          class="portrait status-icon"
+          :class="{'found': found.woof, 'not-found': !found.woof }"
+          src="@/assets/portraits/woof.png"
+        >
         <p>Woof</p>
       </li>
       <li class="find-status">
-        <img class="portrait status-icon" src="@/assets/portraits/wbeard.png" alt>
+        <img
+          class="portrait status-icon"
+          :class="{'found': found.wbeard, 'not-found': !found.wbeard }"
+          src="@/assets/portraits/wbeard.png"
+        >
         <p>Whitebeard</p>
       </li>
       <li class="find-status">
-        <img class="portrait status-icon" src="@/assets/portraits/odlaw.png" alt>
+        <img
+          class="portrait status-icon"
+          :class="{'found': found.odlaw, 'not-found': !found.odlaw }"
+          src="@/assets/portraits/odlaw.png"
+        >
         <p>Odlaw</p>
       </li>
     </ul>
@@ -30,7 +50,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "sidebar",
+  data() {
+    return {};
+  },
+  props: ["found"]
+};
 </script>
 
 <style>
@@ -68,12 +94,20 @@ export default {};
 }
 
 .status-icon {
-  border: 5px solid #8b0a24;
+  border: 5px solid;
   width: 60px;
 }
 
+.found {
+  border-color: #0a8b4f;
+}
+
+.not-found {
+  border-color: #8b0a24;
+}
+
 .status-icon:hover {
-  border: 5px solid #0a8b4f;
+  /* border: 5px solid #0a8b4f; */
 }
 
 #time {
