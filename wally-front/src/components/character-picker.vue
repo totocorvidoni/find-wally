@@ -1,7 +1,12 @@
 <template>
   <div id="character-picker">
     <button id="close-picker" class="selection-icon" @click="$emit('closePicker')">X</button>
-    <img id="wally" class="portrait selection-icon" src="@/assets/portraits/wally.png">
+    <img
+      id="wally"
+      class="portrait selection-icon"
+      src="@/assets/portraits/wally.png"
+      @click="onClick"
+    >
     <img id="wenda" class="portrait selection-icon" src="@/assets/portraits/wenda.png">
     <img id="woof" class="portrait selection-icon" src="@/assets/portraits/woof.png">
     <img id="wbeard" class="portrait selection-icon" src="@/assets/portraits/wbeard.png">
@@ -11,7 +16,17 @@
 
 <script>
 export default {
-  name: 'characterPicker',
+  name: "characterPicker",
+  methods: {
+    async onClick() {
+      try {
+        const response = await this.axios.get(
+          "http://localhost:3000/game/wally"
+        );
+        console.log(response.data);
+      } catch (error) {}
+    }
+  }
 };
 </script>
 
@@ -28,7 +43,7 @@ export default {
 #close-picker {
   top: -15px;
   right: -15px;
-  background: #b10f0f ;
+  background: #b10f0f;
   border: 2px solid white;
   border-radius: 50%;
   color: white;
