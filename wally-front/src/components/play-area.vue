@@ -3,9 +3,12 @@
     <transition name="fade">
       <character-picker
         v-if="guessing"
-        :style="{ left: mouseX, top: mouseY }"
+        :mouseX="mouseX"
+        :mouseY="mouseY"
+        :found="found"
+        :style="{ left: pixelPosition.x, top: pixelPosition.y }"
         @close-picker="guessing = false"
-        @results="onResults(...arguments)"
+        @found-it="onFoundIt(...arguments)"
       ></character-picker>
     </transition>
     <img id="photo" @click="selectArea" src="@/assets/play-photo-troy.jpg">
@@ -18,6 +21,9 @@ import characterPicker from "./character-picker";
 
 export default {
   name: "playArea",
+  directives: {
+    dragscroll
+  },
   components: { characterPicker },
   data() {
     return {
@@ -26,8 +32,8 @@ export default {
       mouseY: 0
     };
   },
-  directives: {
-    dragscroll
+  props: {
+    found: Object
   },
   methods: {
     positionOnPhoto(e) {
@@ -35,16 +41,23 @@ export default {
       const photoY = Math.round(e.srcElement.getBoundingClientRect().top);
       const mouseX = Math.abs(photoX - e.clientX);
       const mouseY = Math.abs(photoY - e.clientY);
+      // console.log(mouseX, mouseY)
       return { x: mouseX, y: mouseY };
     },
     selectArea(e) {
       const position = this.positionOnPhoto(e);
-      this.guessing = true; // !this.guessing;
-      this.mouseX = position.x - 25 + "px"; // 25px offset to center the box on cursor pointer.
-      this.mouseY = position.y - 25 + "px";
+      this.guessing = true; //
+      this.mouseX = position.x;
+      this.mouseY = position.y;
     },
-    onResults(args) {
-      this.$emit('check-results', args)
+    onFoundIt(args) {
+      this.$emit("character-found", args);
+    }
+  },
+  computed: {
+    pixelPosition() {
+      // -25px offset so the box gets centered around the mouse pointer
+      return { x: `${this.mouseX - 25}px`, y: `${this.mouseY - 25}px` };
     }
   }
 };

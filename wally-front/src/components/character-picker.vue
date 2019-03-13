@@ -8,6 +8,7 @@
       @click="checkArea"
     >
     <img
+      v-if="!found.wenda"
       id="wenda"
       class="portrait selection-icon"
       src="@/assets/portraits/wenda.png"
@@ -37,14 +38,25 @@
 <script>
 export default {
   name: "characterPicker",
+  props: {
+    mouseX: Number,
+    mouseY: Number,
+    found: Object
+  },
   methods: {
     async checkArea(e) {
       try {
-        const response = await this.axios.get(
-          `http://localhost:3000/game/${e.target.id}`
+        const response = await this.axios.post(
+          `http://localhost:3000/game/${e.target.id}`,
+          { x: Array.from({ length: (50) }, (x,i) => i + (this.mouseX - 25)),
+            y: Array.from({ length: (50) }, (x,i) => i + (this.mouseY - 25)) } // Send all pixels in a 50x50 square around the pixel clicked.
         );
-        const status = JSON.parse(response.data);
-        this.$emit("results", { character: e.target.id, status });
+        if (response.data) {
+          this.$emit("found-it", {
+            character: e.target.id,
+            status: response.data
+          });
+        }
       } catch (error) {
         alert(
           "Something terrible and unexpected has happend. Please try again."

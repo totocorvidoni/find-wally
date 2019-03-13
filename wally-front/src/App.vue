@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <play-area @check-results="onCheckResult(...arguments)"></play-area>
+    <play-area @character-found="onCharacterFound(...arguments)" :found="found"></play-area>
     <sidebar :found="found"></sidebar>
   </div>
 </template>
@@ -27,8 +27,9 @@ export default {
     };
   },
   methods: {
-    onCheckResult(results) {
+    onCharacterFound(results) {
       this.found[results.character] = results.status;
+      console.log(results.status);
     }
   }
 };
