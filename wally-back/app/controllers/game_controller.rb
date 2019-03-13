@@ -2,7 +2,6 @@
 
 class GameController < ApplicationController
   def index
-    render json: 'this is a test string'
   end
 
   def wally
