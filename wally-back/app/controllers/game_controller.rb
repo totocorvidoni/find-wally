@@ -4,6 +4,21 @@ class GameController < ApplicationController
   def index
   end
 
+  def start
+    user = User.create(
+      start_time: Time.now
+    )
+    render json: user.token
+  end
+
+  def end
+    user = User.find_by_token(params[:token])
+    user.update(end_time: Time.now)
+    total_time = user.end_time - user.start_time
+    time_formated = Time.at(total_time).utc.strftime("%H:%M:%S")
+    render json: time_formated
+  end
+
   def wally
     mouse_position = { x: params[:x], y: params[:y] }
     render json: character_found?(mouse_position, 'Wally')

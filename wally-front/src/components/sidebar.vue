@@ -42,18 +42,20 @@
         <p>Odlaw</p>
       </li>
     </ul>
-    <div id="time">
-      <h2>Time</h2>
-      <h1>00:00</h1>
-    </div>
+    <timer />
   </div>
 </template>
 
 <script>
+import timer from './timer.vue'
+
 export default {
   name: "sidebar",
   data() {
     return {};
+  },
+  components: {
+    timer
   },
   props: ["found"]
 };
@@ -108,9 +110,5 @@ export default {
 
 .status-icon:hover {
   /* border: 5px solid #0a8b4f; */
-}
-
-#time {
-  margin-bottom: 1em;
 }
 </style>
