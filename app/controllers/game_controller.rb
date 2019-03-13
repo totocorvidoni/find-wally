@@ -6,7 +6,8 @@ class GameController < ApplicationController
   end
 
   def wally
-    render json: 'true'
+    mouse_position = { x: params[:x], y: params[:y] }
+    render json: character_found?(mouse_position, 'Wally')
   end
 
   def wenda
@@ -15,15 +16,18 @@ class GameController < ApplicationController
   end
 
   def woof
-    render json: 'true'
+    mouse_position = { x: params[:x], y: params[:y] }
+    render json: character_found?(mouse_position, 'Woof')
   end
 
   def wbeard
-    render json: 'false'
+    mouse_position = { x: params[:x], y: params[:y] }
+    render json: character_found?(mouse_position, 'White Beard')
   end
 
   def odlaw
-    render json: 'true'
+    mouse_position = { x: params[:x], y: params[:y] }
+    render json: character_found?(mouse_position, 'Odlaw')
   end
 
   private
