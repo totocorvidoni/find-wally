@@ -2,6 +2,7 @@
   <div id="character-picker">
     <button id="picker-closer" class="selection-icon" @click="$emit('close-picker')">X</button>
     <img
+      v-if="!found.wally"
       id="wally"
       class="portrait selection-icon"
       src="@/assets/portraits/wally.png"
@@ -15,18 +16,21 @@
       @click="checkArea"
     >
     <img
+      v-if="!found.woof"
       id="woof"
       class="portrait selection-icon"
       src="@/assets/portraits/woof.png"
       @click="checkArea"
     >
     <img
+      v-if="!found.wbeard"
       id="wbeard"
       class="portrait selection-icon"
       src="@/assets/portraits/wbeard.png"
       @click="checkArea"
     >
     <img
+      v-if="!found.odlaw"
       id="odlaw"
       class="portrait selection-icon"
       src="@/assets/portraits/odlaw.png"
@@ -48,8 +52,10 @@ export default {
       try {
         const response = await this.axios.post(
           `http://localhost:3000/game/${e.target.id}`,
-          { x: Array.from({ length: (50) }, (x,i) => i + (this.mouseX - 25)),
-            y: Array.from({ length: (50) }, (x,i) => i + (this.mouseY - 25)) } // Send all pixels in a 50x50 square around the pixel clicked.
+          {
+            x: Array.from({ length: 50 }, (x, i) => i + (this.mouseX - 25)),
+            y: Array.from({ length: 50 }, (x, i) => i + (this.mouseY - 25))
+          } // Send all pixels in a 50x50 square around the pixel clicked.
         );
         if (response.data) {
           this.$emit("found-it", {

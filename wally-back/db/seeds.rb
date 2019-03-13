@@ -14,6 +14,16 @@ end
 
 Photo.create(name: 'Troy')
 
+
+CharacterInPhoto.create(
+  character: Character.find_by_name('Wally'),
+  photo: Photo.find_by_name('Troy'),
+  start_x: 464,
+  end_x: 475,
+  start_y: 1535,
+  end_y: 1567
+)
+
 CharacterInPhoto.create(
   character: Character.find_by_name('Wenda'),
   photo: Photo.find_by_name('Troy'),
@@ -21,4 +31,31 @@ CharacterInPhoto.create(
   end_x: 2146,
   start_y: 1385,
   end_y: 1410
+)
+
+CharacterInPhoto.create(
+  character: Character.find_by_name('Woof'),
+  photo: Photo.find_by_name('Troy'),
+  start_x: 1715,
+  end_x: 1741,
+  start_y: 1279,
+  end_y: 1289
+)
+
+CharacterInPhoto.create(
+  character: Character.find_by_name('White Beard'),
+  photo: Photo.find_by_name('Troy'),
+  start_x: 807,
+  end_x: 818,
+  start_y: 238,
+  end_y: 252
+)
+
+CharacterInPhoto.create(
+  character: Character.find_by_name('Odlaw'),
+  photo: Photo.find_by_name('Troy'),
+  start_x: 2434,
+  end_x: 2449,
+  start_y: 1490,
+  end_y: 1517
 )
