@@ -1,25 +1,44 @@
+# frozen_string_literal: true
+
 class GameController < ApplicationController
   def index
-    render :json => 'this is a test string'
+    render json: 'this is a test string'
   end
 
   def wally
-    render :json => 'true'
+    render json: 'true'
   end
 
   def wenda
-    render :json => 'false'
+    mouse_position = { x: params[:x], y: params[:y] }
+    render json: character_found?(mouse_position, 'Wenda')
   end
 
   def woof
-    render :json => 'true'
+    render json: 'true'
   end
 
   def wbeard
-    render :json => 'false'
+    render json: 'false'
   end
 
   def odlaw
-    render :json => 'true'
+    render json: 'true'
+  end
+
+  private
+
+  def character_found?(mouse_position, name)
+    character = Character.find_by_name(name)
+    spot_info = CharacterInPhoto.where(character: character, photo: 1).first
+    range = {
+      x: [spot_info[:start_x], spot_info[:end_x]],
+      y: [spot_info[:start_y], spot_info[:end_y]]
+    }
+    if mouse_position[:x].any? { |pixel| pixel.between?(*range[:x]) } &&
+       mouse_position[:y].any? { |pixel| pixel.between?(*range[:y]) }
+      return true
+    end
+    false
   end
 end
