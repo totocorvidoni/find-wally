@@ -55,7 +55,6 @@ export default {
 
 <style>
 #time {
-  /* margin-bottom: 1em; */
-  font-size: 1.3em;
+  font-size: 1.5em;
 }
 </style>

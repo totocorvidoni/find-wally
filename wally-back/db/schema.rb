@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_171945) do
     t.string "name"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.string "total_time"
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

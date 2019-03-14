@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar">
-    <ul>
+    <ul id="character-status">
       <li class="find-status">
         <img
           class="portrait status-icon"
@@ -42,12 +42,14 @@
         <p>Odlaw</p>
       </li>
     </ul>
-    <timer />
+    <timer/>
+    <highscores/>
   </div>
 </template>
 
 <script>
-import timer from './timer.vue'
+import timer from "./timer.vue";
+import highscores from "./highscores.vue";
 
 export default {
   name: "sidebar",
@@ -55,7 +57,8 @@ export default {
     return {};
   },
   components: {
-    timer
+    timer,
+    highscores
   },
   props: ["found"]
 };
@@ -63,30 +66,34 @@ export default {
 
 <style>
 #sidebar {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  align-content: center;
-  width: 120px;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  grid-gap: 1em;
+  justify-content: center;
+  position: relative;
   background: #2c3e50;
-  font-weight: 700;
+  border-left: 2px solid white;
   color: white;
+  font-weight: 700;
   text-align: center;
-  min-height: 650px;
-  padding: 1em 1em;
+  padding-top: 1em;
+  min-height: 700px;
+  z-index: 10;
 }
 
 #sidebar ul {
   list-style-type: none;
+}
+
+#character-status {
   margin-bottom: 1em;
 }
 
-#sidebar li {
+#character-status li {
   margin: 1em 0;
 }
 
-#sidebar p {
-  display: inline-block;
+#character-status p { 
   border-radius: 0.25em;
 }
 
@@ -106,9 +113,5 @@ export default {
 
 .not-found {
   border-color: #8b0a24;
-}
-
-.status-icon:hover {
-  /* border: 5px solid #0a8b4f; */
 }
 </style>

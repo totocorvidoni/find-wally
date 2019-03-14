@@ -66,10 +66,8 @@ export default {
 <style>
 #play-area {
   position: relative;
-  border: 10px solid #2c3e50;
-  border-right: none;
   max-height: 100vh;
-  min-height: 650px;
+  min-height: 700px;
   overflow: hidden;
 }
 

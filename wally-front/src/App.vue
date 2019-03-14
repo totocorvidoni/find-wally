@@ -43,16 +43,31 @@ export default {
         this.finishGame();
       }
     },
-    async finishGame() {
-      const response = await this.axios.post("http://localhost:3000/game/end", {
+    async sendScore() {
+      return await this.axios.post("http://localhost:3000/game/score", {
         token: this.userToken
       });
-      console.log(response.data);
-      prompt(
-        `Congratulations, you solved the game! Your time is: ${
-          response.data
-        }. Would you like to put your name in our Highscores table?`
-      );
+    },
+    async sendName(name) {
+      return await this.axios.post("http://localhost:3000/game/name", {
+        token: this.userToken,
+        name: name
+      });
+    },
+    async finishGame() {
+      try {
+        const response = await this.sendScore();
+        console.log(response.data);
+        const name = prompt(
+          `Congratulations, you solved the game! Your time is: ${
+            response.data
+          }. Would you like to put your name in our Highscores table?`
+        );
+        this.sendName(name);        
+      } catch (error) {
+        console.error(error);
+        
+      }
     }
   }
 };

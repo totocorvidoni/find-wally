@@ -11,12 +11,28 @@ class GameController < ApplicationController
     render json: user.token
   end
 
-  def end
+  def score
     user = User.find_by_token(params[:token])
     user.update(end_time: Time.now)
     total_time = user.end_time - user.start_time
     time_formated = Time.at(total_time).utc.strftime("%H:%M:%S")
+    user.update(total_time: time_formated)
     render json: time_formated
+  end
+
+  def name
+    user = User.find_by_token(params[:token])
+    if !params[:name] || params[:name] == ''
+      user.destroy
+    else
+      user.update(name: params[:name])
+    end
+  end
+
+  def scores
+    scores = User.select(:id, :name, :total_time).where.not(total_time: nil)
+    top_scores = scores.order(:total_time).take(10)
+    render json: top_scores
   end
 
   def wally
@@ -59,4 +75,6 @@ class GameController < ApplicationController
     end
     false
   end
+
+
 end
