@@ -58,16 +58,19 @@ export default {
           } // Send all pixels in a 50x50 square around the pixel clicked.
         );
         if (response.data) {
+          alert(`You found ${e.target.id}!`)
           this.$emit("found-it", {
             character: e.target.id,
             status: response.data
           });
+        } else {
+          alert(`${e.target.id} is not here!`)
         }
       } catch (error) {
         alert(
           "Something terrible and unexpected has happend. Please try again."
         );
-        console.log(error);
+        console.error(error);
       }
     }
   }

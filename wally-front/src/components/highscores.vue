@@ -2,7 +2,10 @@
   <div id="highscores">
     <button id="show-board" @click="onShowBoardClick">HIGHSCORES</button>
     <transition name="slide">
-      <ul id="score-board" v-show="boardActive" @click="boardActive = false">
+      <ul v-if="scores.length === 0" id="score-board" v-show="boardActive" @click="boardActive = false">
+        <li>No one has summited a Highscore yet. Bet the first!</li>
+      </ul>
+      <ul v-else id="score-board" v-show="boardActive" @click="boardActive = false">
         <li v-for="score in scores" :key="score.id">
           <h3>{{ score.name }}</h3>
           <p class="score">{{ score.total_time }}</p>
@@ -31,11 +34,15 @@ export default {
         const response = await this.axios.get(
           "http://localhost:3000/game/scores"
         );
-        console.log(response.data);
         this.scores = response.data;
       } catch (error) {
         console.error(error);
       }
+    }
+  },
+  computed: {
+    emptyScore() {
+      this.scores.length === 0 ? true : false;
     }
   }
 };
@@ -61,7 +68,7 @@ export default {
   border-radius: 0.25em;
   cursor: pointer;
   margin: 0 1em 1em 0;
-  width: 150px;
+  width: 175px;
   z-index: -10;
 }
 
@@ -81,6 +88,10 @@ export default {
   border-radius: 0.25em;
   padding: 0.2em 0.5em;
   color: #2c3e50;
+}
+
+#score-board li:first-child .score {
+  border: 5px ridge rgb(112, 240, 229);
 }
 
 .slide-enter-active,

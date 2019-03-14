@@ -57,7 +57,6 @@ export default {
     async finishGame() {
       try {
         const response = await this.sendScore();
-        console.log(response.data);
         const name = prompt(
           `Congratulations, you solved the game! Your time is: ${
             response.data
