@@ -1,7 +1,7 @@
 <template>
   <div id="time">
-    <h2>Time</h2>
-    <h1>{{ showTimer }}</h1>
+    <p>Time</p>
+    <div id="timer">{{ showTimer }}</div>
   </div>
 </template>
 
@@ -55,6 +55,7 @@ export default {
 
 <style>
 #time {
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
+  font-size: 1.3em;
 }
 </style>

@@ -73,11 +73,11 @@ export default {
   color: white;
   text-align: center;
   min-height: 650px;
+  padding: 1em 1em;
 }
 
 #sidebar ul {
   list-style-type: none;
-  padding: 0 0.5em;
   margin-bottom: 1em;
 }
 
