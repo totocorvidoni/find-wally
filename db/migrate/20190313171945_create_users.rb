@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.datetime :start_time
       t.datetime :end_time
+      t.string :total_time
       t.string :token
 
       t.timestamps
