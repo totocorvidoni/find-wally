@@ -39,7 +39,7 @@ export default {
   methods: {
     onCharacterFound(results) {
       this.found[results.character] = results.status;
-      if (Object.keys(this.found).every(character => character)) {
+      if (Object.values(this.found).every(status => status)) {
         this.finishGame();
       }
     },
