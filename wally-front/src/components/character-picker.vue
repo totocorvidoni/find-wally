@@ -51,7 +51,7 @@ export default {
     async checkArea(e) {
       try {
         const response = await this.axios.post(
-          `http://localhost:3000/game/${e.target.id}`,
+          `${process.env.VUE_API_URL}/game/${e.target.id}`,
           {
             x: Array.from({ length: 50 }, (x, i) => i + (this.mouseX - 25)),
             y: Array.from({ length: 50 }, (x, i) => i + (this.mouseY - 25))

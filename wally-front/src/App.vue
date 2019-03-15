@@ -29,7 +29,7 @@ export default {
   },
   mounted: async function getUserToken() {
     try {
-      const response = await this.axios.get("http://localhost:3000/game/start");
+      const response = await this.axios.get(`${process.env.VUE_API_URL}/game/start`);
       this.userToken = response.data;
     } catch (error) {
       alert("Something went really wrong, we are sorry.");
@@ -44,12 +44,12 @@ export default {
       }
     },
     async sendScore() {
-      return await this.axios.post("http://localhost:3000/game/score", {
+      return await this.axios.post(`${process.env.VUE_API_URL}/game/score`, {
         token: this.userToken
       });
     },
     async sendName(name) {
-      return await this.axios.post("http://localhost:3000/game/name", {
+      return await this.axios.post(`${process.env.VUE_API_URL}/game/name`, {
         token: this.userToken,
         name: name
       });

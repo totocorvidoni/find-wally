@@ -32,7 +32,7 @@ export default {
     async getScores() {
       try {
         const response = await this.axios.get(
-          "http://localhost:3000/game/scores"
+          `${process.env.VUE_API_URL}/game/scores`
         );
         this.scores = response.data;
       } catch (error) {

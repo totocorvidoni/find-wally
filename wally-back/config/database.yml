@@ -20,6 +20,16 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-production:
-  <<: *default
-  database: db/production.sqlite3
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
+
+production: &production
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: find_wally_production
+  username: find_wally
+  password: <%= ENV['FIND_WALLY_DATABASE_PASSWORD'] %>
