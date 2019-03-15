@@ -35,7 +35,7 @@ module WallyBack
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         if Rails.env.production?
-          origins 'https://wally-back-end.herokuapp.com'
+          origins 'https://totocorvidoni.github.io'
         else
           origins 'http://localhost:8080'
         end
