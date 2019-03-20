@@ -49,10 +49,11 @@ export default {
   },
   methods: {
     async askToAPI(character, area) {
-      return await this.axios.post(
+      const response = await this.axios.post(
         `${process.env.VUE_API_URL}/game/${character}`,
         area
-      ).data;
+      );
+      return response.data;
     },
     async checkArea(e) {
       const character = e.target.id;

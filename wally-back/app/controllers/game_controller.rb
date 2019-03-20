@@ -36,45 +36,43 @@ class GameController < ApplicationController
   end
 
   def wally
-    mouse_position = { x: params[:x], y: params[:y] }
-    render json: character_found?(mouse_position, 'Wally')
+    selected_area = { x: params[:x], y: params[:y] }
+    render json: character_found?(selected_area, 'Wally')
   end
 
   def wenda
-    mouse_position = { x: params[:x], y: params[:y] }
-    render json: character_found?(mouse_position, 'Wenda')
+    selected_area = { x: params[:x], y: params[:y] }
+    render json: character_found?(selected_area, 'Wenda')
   end
 
   def woof
-    mouse_position = { x: params[:x], y: params[:y] }
-    render json: character_found?(mouse_position, 'Woof')
+    selected_area = { x: params[:x], y: params[:y] }
+    render json: character_found?(selected_area, 'Woof')
   end
 
   def wbeard
-    mouse_position = { x: params[:x], y: params[:y] }
-    render json: character_found?(mouse_position, 'White Beard')
+    selected_area = { x: params[:x], y: params[:y] }
+    render json: character_found?(selected_area, 'White Beard')
   end
 
   def odlaw
-    mouse_position = { x: params[:x], y: params[:y] }
-    render json: character_found?(mouse_position, 'Odlaw')
+    selected_area = { x: params[:x], y: params[:y] }
+    render json: character_found?(selected_area, 'Odlaw')
   end
 
   private
 
-  def character_found?(mouse_position, name)
+  def character_found?(selected_area, name)
     character = Character.find_by_name(name)
-    spot_info = CharacterInPhoto.where(character: character, photo: 1).first
+    hidding_spot = CharacterInPhoto.where(character: character, photo: 1).first
     range = {
-      x: [spot_info[:start_x], spot_info[:end_x]],
-      y: [spot_info[:start_y], spot_info[:end_y]]
+      x: [hidding_spot[:start_x], hidding_spot[:end_x]],
+      y: [hidding_spot[:start_y], hidding_spot[:end_y]]
     }
-    if mouse_position[:x].any? { |pixel| pixel.between?(*range[:x]) } &&
-       mouse_position[:y].any? { |pixel| pixel.between?(*range[:y]) }
+    if selected_area[:x].any? { |pixel| pixel.between?(*range[:x]) } &&
+       selected_area[:y].any? { |pixel| pixel.between?(*range[:y]) }
       return true
     end
     false
   end
-
-
 end
