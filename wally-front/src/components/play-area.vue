@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     positionOnPhoto(e) {
-      if(this.musemove) { return }
       const photoX = Math.round(e.srcElement.getBoundingClientRect().left);
       const photoY = Math.round(e.srcElement.getBoundingClientRect().top);
       const mouseX = Math.abs(photoX - e.clientX);
