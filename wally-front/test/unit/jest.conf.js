@@ -22,4 +22,12 @@ module.exports = {
   ],
   verbose: true,
   testURL: 'http://localhost/',
+  testEnvironmentOptions: {
+    // only string values is supported??
+    beforeParse(window) {
+      window.alert = () => {
+        undefined;
+      };
+    },
+  },
 };

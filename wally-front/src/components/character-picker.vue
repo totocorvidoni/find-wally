@@ -48,23 +48,28 @@ export default {
     found: Object
   },
   methods: {
+    async askToAPI(character, area) {
+      return await this.axios.post(
+        `${process.env.VUE_API_URL}/game/${character}`,
+        area
+      ).data;
+    },
     async checkArea(e) {
+      const character = e.target.id;
+      const area = {
+        x: Array.from({ length: 50 }, (x, i) => i + (this.mouseX - 25)),
+        y: Array.from({ length: 50 }, (x, i) => i + (this.mouseY - 25)) // All pixels in a 50x50 square around the pixel clicked.
+      };
       try {
-        const response = await this.axios.post(
-          `${process.env.VUE_API_URL}/game/${e.target.id}`,
-          {
-            x: Array.from({ length: 50 }, (x, i) => i + (this.mouseX - 25)),
-            y: Array.from({ length: 50 }, (x, i) => i + (this.mouseY - 25))
-          } // Send all pixels in a 50x50 square around the pixel clicked.
-        );
-        if (response.data) {
-          alert(`You found ${e.target.id}!`)
+        const response = await this.askToAPI(character, area);
+        if (response) {
+          alert(`You found ${character}!`);
           this.$emit("found-it", {
-            character: e.target.id,
-            status: response.data
+            character: character,
+            status: response
           });
         } else {
-          alert(`${e.target.id} is not here!`)
+          alert(`${character} is not here!`);
         }
       } catch (error) {
         alert(
@@ -73,6 +78,9 @@ export default {
         console.error(error);
       }
     }
+    // checkArea() {
+    //   this.$emit('found-it');
+    // }
   }
 };
 </script>
