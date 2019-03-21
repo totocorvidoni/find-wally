@@ -42,6 +42,13 @@
 <script>
 export default {
   name: "characterPicker",
+  names: {
+    wally: 'Wally',
+    wenda: 'Wenda',
+    woof: 'Woof',
+    wbeard: 'Whitebeard',
+    odlaw: 'Odlaw'
+  },
   props: {
     mouseX: Number,
     mouseY: Number,
@@ -58,13 +65,13 @@ export default {
     async checkArea(e) {
       const character = e.target.id;
       const area = {
-        x: Array.from({ length: 50 }, (x, i) => i + (this.mouseX - 25)),
-        y: Array.from({ length: 50 }, (x, i) => i + (this.mouseY - 25)) // All pixels in a 50x50 square around the pixel clicked.
+        x: [this.mouseX - 25, this.mouseX + 25],
+        y: [this.mouseY - 25, this.mouseY + 25] // 50x50 square around the pixel clicked.
       };
       try {
         const response = await this.askToAPI(character, area);
         if (response) {
-          alert(`You found ${character}!`);
+          alert(`You found ${this.$options.names[character]}!`);
           this.$emit("found-it", {
             character: character,
             status: response
