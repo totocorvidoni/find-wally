@@ -65,12 +65,16 @@ class GameController < ApplicationController
   def character_found?(selected_area, name)
     character = Character.find_by_name(name)
     hidding_spot = CharacterInPhoto.where(character: character, photo: 1).first
-    range = {
+    search_range = {
+      x: (selected_area[:x][0]..selected_area[:x][1]).to_a,
+      y: (selected_area[:y][0]..selected_area[:y][1]).to_a
+    }
+    hidden_range = {
       x: [hidding_spot[:start_x], hidding_spot[:end_x]],
       y: [hidding_spot[:start_y], hidding_spot[:end_y]]
     }
-    if selected_area[:x].any? { |pixel| pixel.between?(*range[:x]) } &&
-       selected_area[:y].any? { |pixel| pixel.between?(*range[:y]) }
+    if search_range[:x].any? { |pixel| pixel.between?(*hidden_range[:x]) } &&
+       search_range[:y].any? { |pixel| pixel.between?(*hidden_range[:y]) }
       return true
     end
     false

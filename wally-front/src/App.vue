@@ -30,7 +30,9 @@ export default {
   mounted: async function getUserToken() {
     try {
       const response = await this.axios.get(`${process.env.VUE_API_URL}/game/start`);
+      // console.log(response.data);
       this.userToken = response.data;
+      // console.log(this.userToken)
     } catch (error) {
       alert("Something went really wrong, we are sorry.");
       console.error(error);
@@ -60,7 +62,7 @@ export default {
         const name = prompt(
           `Congratulations, you solved the game! Your time is: ${
             response.data
-          }. Would you like to put your name in our Highscores table?`
+          }. Would you like to save your score?`
         );
         this.sendName(name);        
       } catch (error) {
@@ -83,4 +85,9 @@ export default {
   display: flex;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
 }
+
+[v-cloak] {
+  display: none
+}
+
 </style>
