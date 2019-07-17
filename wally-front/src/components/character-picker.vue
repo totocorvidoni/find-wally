@@ -86,9 +86,6 @@ export default {
         console.error(error);
       }
     }
-    // checkArea() {
-    //   this.$emit('found-it');
-    // }
   }
 };
 </script>

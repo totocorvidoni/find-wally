@@ -3,7 +3,7 @@
     <button id="show-board" @click="onShowBoardClick">HIGHSCORES</button>
     <transition name="slide">
       <ul v-if="scores.length === 0" id="score-board" v-show="boardActive" @click="boardActive = false">
-        <li>No one has summited a Highscore yet. Bet the first!</li>
+        <li>No one has summited a Highscore yet. Be the first!</li>
       </ul>
       <ul v-else id="score-board" v-show="boardActive" @click="boardActive = false">
         <li v-for="score in scores" :key="score.id">
