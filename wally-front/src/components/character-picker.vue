@@ -7,35 +7,35 @@
       class="portrait selection-icon"
       src="@/assets/portraits/wally.png"
       @click="checkArea"
-    >
+    />
     <img
       v-if="!found.wenda"
       id="wenda"
       class="portrait selection-icon"
       src="@/assets/portraits/wenda.png"
       @click="checkArea"
-    >
+    />
     <img
       v-if="!found.woof"
       id="woof"
       class="portrait selection-icon"
       src="@/assets/portraits/woof.png"
       @click="checkArea"
-    >
+    />
     <img
       v-if="!found.wbeard"
       id="wbeard"
       class="portrait selection-icon"
       src="@/assets/portraits/wbeard.png"
       @click="checkArea"
-    >
+    />
     <img
       v-if="!found.odlaw"
       id="odlaw"
       class="portrait selection-icon"
       src="@/assets/portraits/odlaw.png"
       @click="checkArea"
-    >
+    />
   </div>
 </template>
 
@@ -43,11 +43,11 @@
 export default {
   name: "characterPicker",
   names: {
-    wally: 'Wally',
-    wenda: 'Wenda',
-    woof: 'Woof',
-    wbeard: 'Whitebeard',
-    odlaw: 'Odlaw'
+    wally: "Wally",
+    wenda: "Wenda",
+    woof: "Woof",
+    wbeard: "Whitebeard",
+    odlaw: "Odlaw"
   },
   props: {
     mouseX: Number,
@@ -77,7 +77,7 @@ export default {
             status: response
           });
         } else {
-          alert(`${character} is not here!`);
+          alert(`${this.$options.names[character]} is not here!`);
         }
       } catch (error) {
         alert(
