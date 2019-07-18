@@ -15,14 +15,10 @@ If you have no idea who this Wally guy is, [Wikipedia can tell you](https://en.w
 - UI that updates when you find a character.
 - Highs Scores that persist on the server so you can show everybody how fast you were.
 
-### Spoilers
+### Spoiler
 
 Since it is a really hard puzzle (I actually had to google where Woof was) I marked their locations [here](/spoilers.jpg).
 
 ## Support
 
 Did you find an issue? Have a suggestion maybe? You can contact me at [totocorvidoni@gmail.com](mailto:totocorvidoni@gmail.com).
-
-## License
-
-The project is licensed under the GNU GPLv3 license.

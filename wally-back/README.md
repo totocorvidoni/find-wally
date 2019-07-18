@@ -1,24 +1,5 @@
-# README
+# Find Wally - Back End
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The back end code for the application. For a full description about the project check [here](https://github.com/totocorvidoni/find-wally).
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+It consists in a rails app working as an API for the front whose work is to validate guesses made by the user, it also updates and serves the High Scores table.
