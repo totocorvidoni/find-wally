@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@vue/test-utils": "^1.0.0-beta.29",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "vue": "^2.6.10",
     "vue-dragscroll": "^1.10.0",
     "vue-router": "^3.0.7"
